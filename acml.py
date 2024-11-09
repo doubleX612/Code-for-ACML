@@ -52,9 +52,8 @@ def build_model_mixchannel(class_model,channels,samples):
     # class_model.summary()
     class_pred = class_model(align_layer) #suqueenze the ACML with other model
 
-    # 构建整体模型并引入loss
+
     train_model = Model(eeg_input,class_pred)
-    # 自定义损失函数
     
     adm = adam_v2.Adam(learning_rate=9e-4, beta_1=0.9, beta_2=0.999,amsgrad=False,epsilon=1e-08, decay=0.0, clipnorm=1.0)
     train_model.compile(optimizer=adm, loss='categorical_crossentropy',metrics = ['accuracy'])
